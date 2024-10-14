@@ -1,0 +1,277 @@
+.request-page {
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Step1과 Step2가 위로 맞춰지도록 설정 */
+    margin-top: 20px; /* StepProgressBar와의 간격 */
+    width: 100%;
+  }
+
+  .step1-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .step1_1 {
+    flex: 0 0 20%; /* Step1의 너비를 20%로 고정 */
+    padding: 20px;
+    border-right: 1px solid #ccc; /* 구분선 추가 */
+}
+
+.step1_2 {
+    flex: 1; /* Step2가 나머지 공간을 채움 */
+    padding: 20px;
+    margin-left: 20px; /* Step1과의 간격 */
+
+}
+
+.selected-category {
+    background-color: #F9812A; /* 선택된 카테고리에 색을 입힘 */
+    color: white;
+}
+
+.subcategory-button {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+
+}
+
+.category-button.selected {
+    background-color: #F9812A;
+    color: white;
+    border-color: #F9812A; /* 선택된 서브 카테고리에 색을 입힘 */
+  }
+
+.subcategory-button.selected {
+    border-color: #F9812A; /* 선택된 서브 카테고리에 색을 입힘 */
+    background-color: #F9812A;
+    color: white;
+}
+  
+  .categories {
+    flex: 0 0 200px; /* 카테고리 영역의 너비를 200px로 고정 */
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* 오른쪽 내용과의 간격 */
+  }
+
+  /* Step2의 스타일을 설정하여 나머지 공간을 차지하도록 설정 */
+.subcategories {
+    flex: 1; /* 남은 공간을 모두 차지 */
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 감싸도록 설정 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+}
+  
+  .category-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    border: none;
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+  
+  .selected-category {
+    background-color: #F9812A;
+    color: white;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+
+  /* Step1_2의 세부 카테고리들을 그룹화 및 정렬 */
+.subcategory-group {
+    margin-bottom: 20px; /* 그룹 간 간격 */
+}
+
+.subcategory-group h3 {
+    margin-bottom: 10px; /* 제목과 카테고리 간 간격 */
+    color: #F9812A; /* Step1_1에서 선택된 카테고리와 일치하는 색상 */
+}
+
+.subcategory-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* 버튼 간 간격 */
+}
+
+.subcategory-button {
+    background-color: #f8f8f8;
+    border: 2px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.subcategory-button.selected {
+    border: 2px solid #F9812A;
+    background-color: white; /* 배경색을 흰색으로 변경 */
+    color: black; /* 텍스트 색상을 검은색으로 변경 */
+    border-color: #F9812A; /* 선택된 서브 카테고리 강조 */
+}
+
+.subcategory-button.selected {
+    background-color: #F9812A;
+    color: white;
+}
+
+.selected {
+    border: 2px solid #F9812A;
+    color: #F9812A;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center; /* 버튼을 가운데로 정렬 */
+    align-items: center; /* 수직 정렬을 위한 설정 */
+    width: 100%; /* 부모 컨테이너의 전체 너비 사용 */
+    gap: 10px; /* 버튼 사이의 간격 */
+    margin-top: 20px;
+  }
+  
+  .prev-button, .next-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prev-button {
+    background-color: #ccc; /* 이전 버튼의 배경색 */
+  }
+  
+  .next-button {
+    background-color: #F9812A; /* 다음 버튼의 배경색 */
+  }
+
+/*Step 3의 CSS*/
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .step3_1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Step4의 CSS*/
+  .step4-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* 각 폼 그룹의 스타일 */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* 라벨 스타일 */
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 텍스트 입력 필드 스타일 */
+  .input-field,
+  .textarea-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* 텍스트 입력 필드의 포커스 상태 */
+  .input-field:focus,
+  .textarea-field:focus {
+    outline: none;
+    border-color: #F9812A;
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+  
+  /* 텍스트 영역 스타일 */
+  .textarea-field {
+    height: 150px;
+    resize: none;
+  }
+  
+  /* 파일 입력 필드 스타일 */
+  .file-input {
+    display: block;
+    margin-top: 8px;
+  }
+  
+  /* 파일 미리보기 섹션 스타일 */
+  .file-preview {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .file-preview-name {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .file-preview-remove {
+    margin-left: auto;
+    font-size: 14px;
+    color: #e74c3c;
+    cursor: pointer;
+  }
+
+    /* 버튼 컨테이너 스타일 */
+  .submit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* 제출 버튼 스타일 */
+  .submit-button {
+    width: 80px;
+    padding: 12px;
+    background-color: #F9812A;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #F9812A;
+  }

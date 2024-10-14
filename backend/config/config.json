@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "zzz1596!!",
+    "database": "gongsite",
+    "host": "ec2-43-203-160-227.ap-northeast-2.compute.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "DB_USERNAME",
+    "password": "DB_PASSWORD",
+    "database": "DB_DATABASE",
+    "host": "DB_HOST",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "DB_USERNAME",
+    "password": "DB_PASSWORD",
+    "database": "DB_DATABASE",
+    "host": "DB_HOST",
+    "dialect": "mysql"
+  }
+}

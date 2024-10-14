@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Management</title>
+    <style>
+        form { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Comment Management</h1>
+    <form id="add-comment-form">
+        <h2>Add Comment</h2>
+        <input type="text" id="add-comment-content" placeholder="Content" required>
+        <input type="number" id="add-comment-user-id" placeholder="User ID" required>
+        <input type="number" id="add-comment-post-id" placeholder="Post ID" required>
+        <button type="submit">Add</button>
+    </form>
+    <form id="update-comment-form">
+        <h2>Update Comment</h2>
+        <input type="number" id="update-comment-id" placeholder="ID" required>
+        <input type="text" id="update-comment-content" placeholder="Content" required>
+        <input type="number" id="update-comment-user-id" placeholder="User ID" required>
+        <input type="number" id="update-comment-post-id" placeholder="Post ID" required>
+        <button type="submit">Update</button>
+    </form>
+    <form id="delete-comment-form">
+        <h2>Delete Comment</h2>
+        <input type="number" id="delete-comment-id" placeholder="ID" required>
+        <button type="submit">Delete</button>
+    </form>
+    <script>
+        document.getElementById('add-comment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const content = document.getElementById('add-comment-content').value;
+            const userId = document.getElementById('add-comment-user-id').value;
+            const postId = document.getElementById('add-comment-post-id').value;
+            await fetch('/api/comments', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content, userId, postId })
+            });
+        });
+
+        document.getElementById('update-comment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('update-comment-id').value;
+            const content = document.getElementById('update-comment-content').value;
+            const userId = document.getElementById('update-comment-user-id').value;
+            const postId = document.getElementById('update-comment-post-id').value;
+            await fetch(`/api/comments/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content, userId, postId })
+            });
+        });
+
+        document.getElementById('delete-comment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('delete-comment-id').value;
+            await fetch(`/api/comments/${id}`, { method: 'DELETE' });
+        });
+    </script>
+</body>
+</html>

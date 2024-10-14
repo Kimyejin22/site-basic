@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Posts</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style></head><body>
+    <h1>Manage Posts</h1>
+    <button onclick="fetchPosts()">Refresh Posts</button>
+    <button onclick="showCreatePostForm()">Create New Post</button>
+    <div id="postForm" style="display: none;">
+        <h2>Create/Edit Post</h2>
+        <form id="postFormElement" onsubmit="submitPostForm(event)">
+            <input type="hidden" id="postId" name="id">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <button onclick="hidePostForm()">Cancel</button>
+    </div>
+    <table id="postsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Step1Data</th>
+                <th>Step2Data</th>
+                <th>Step3Data</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="postsBody">
+            <!-- Posts will be dynamically populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch posts from the backend
+        function fetchPosts() {
+            fetch('/api/posts')
+                .then(response => response.json())
+                .then(data => {
+                    const postsBody = document.getElementById('postsBody');
+                    postsBody.innerHTML = '';
+                    data.forEach(post => {
+                        const step1Data = post.Step1Data ? `Category: ${post.Step1Data.selectedCategory}, Subcategory: ${post.Step1Data.selectedSubcategory}` : 'N/A';
+                        const step2Data = post.Step2Data ? `Category: ${post.Step2Data.selectedCategory}, Subcategory: ${post.Step2Data.selectedSubcategory}` : 'N/A';
+                        const step3Data = post.Step3Data ? `Quantity: ${post.Step3Data.quantity}, Price: ${post.Step3Data.price}, Sample Needed: ${post.Step3Data.sampleNeeded}, Delivery Date: ${post.Step3Data.deliveryDate}, Communication: ${post.Step3Data.preferredCommunication}, Recruitment Period: ${post.Step3Data.recruitmentPeriod}` : 'N/A';
+                        
+                        postsBody.innerHTML += `
+                            <tr>
+                                <td>${post.id}</td>
+                                <td>${post.title}</td>
+                                <td>${post.content}</td>
+                                <td>${step1Data}</td>
+                                <td>${step2Data}</td>
+                                <td>${step3Data}</td>
+                                <td>
+                                    <button onclick="editPost(${post.id}, '${post.title}', '${post.content}')">Edit</button>
+                                    <button onclick="deletePost(${post.id})">Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error fetching posts:', error));
+        }
+
+        // Show create post form
+        function showCreatePostForm() {
+            document.getElementById('postForm').style.display = 'block';
+            document.getElementById('postFormElement').reset();
+            document.getElementById('postId').value = '';
+        }
+
+        // Hide post form
+        function hidePostForm() {
+            document.getElementById('postForm').style.display = 'none';
+        }
+
+        // Submit post form (create or update)
+        function submitPostForm(event) {
+            event.preventDefault();
+            const id = document.getElementById('postId').value;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            if (id) {
+                // Update existing post
+                fetch(`/api/posts/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, content })
+                })
+                .then(response => response.json())
+                .then(() => {
+                    fetchPosts();
+                    hidePostForm();
+                })
+                .catch(error => console.error('Error updating post:', error));
+            } else {
+                // Create new post
+                fetch('/api/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, content })
+                })
+                .then(response => response.json())
+                .then(() => {
+                    fetchPosts();
+                    hidePostForm();
+                })
+                .catch(error => console.error('Error creating post:', error));
+            }
+        }
+
+        // Edit a post
+        function editPost(id, title, content) {
+            document.getElementById('postForm').style.display = 'block';
+            document.getElementById('postId').value = id;
+            document.getElementById('title').value = title;
+            document.getElementById('content').value = content;
+        }
+
+        // Delete a post
+        function deletePost(id) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                fetch(`/api/posts/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(() => fetchPosts())
+                .catch(error => console.error('Error deleting post:', error));
+            }
+        }
+
+        // Fetch posts when the page loads
+        window.onload = fetchPosts;
+    </script></body></html>

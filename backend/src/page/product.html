@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <style>
+        form { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Product Management</h1>
+    <form id="add-product-form">
+        <h2>Add Product</h2>
+        <input type="text" id="add-name" placeholder="Name" required>
+        <input type="number" id="add-price" placeholder="Price" required>
+        <button type="submit">Add</button>
+    </form>
+    <form id="update-product-form">
+        <h2>Update Product</h2>
+        <input type="number" id="update-id" placeholder="ID" required>
+        <input type="text" id="update-name" placeholder="Name" required>
+        <input type="number" id="update-price" placeholder="Price" required>
+        <button type="submit">Update</button>
+    </form>
+    <form id="delete-product-form">
+        <h2>Delete Product</h2>
+        <input type="number" id="delete-id" placeholder="ID" required>
+        <button type="submit">Delete</button>
+    </form>
+    <script>
+        document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('add-name').value;
+            const price = document.getElementById('add-price').value;
+            await fetch('/api/products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, price })
+            });
+        });
+
+        document.getElementById('update-product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('update-id').value;
+            const name = document.getElementById('update-name').value;
+            const price = document.getElementById('update-price').value;
+            await fetch(`/api/products/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, price })
+            });
+        });
+
+        document.getElementById('delete-product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('delete-id').value;
+            await fetch(`/api/products/${id}`, { method: 'DELETE' });
+        });
+    </script>
+</body>
+</html>

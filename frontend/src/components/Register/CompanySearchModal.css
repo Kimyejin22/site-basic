@@ -1,0 +1,71 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex !important; /* 모든 조건을 무시하고 강제로 보이게 설정 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999 !important;
+    opacity: 0;
+    visibility: visible !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+    display: flex; 
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal table th, .modal table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.modal button {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 90%;
+        max-width: none;
+    }
+}

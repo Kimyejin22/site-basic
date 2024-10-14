@@ -1,0 +1,133 @@
+/* 공통 스타일 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.filter {
+  margin-bottom: 20px;
+}
+
+.filter h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.filter select,
+.filter button {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.request-list-item,
+.request-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.request-list-item:hover,
+.request-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.request-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.request-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.request-content {
+  font-size: 14px;
+  color: #666;
+  flex: 3;
+}
+
+/* MaterialCategoryFilter 스타일 */
+.material-category-filter {
+  margin-bottom: 20px;
+}
+
+.material-category-filter h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.material-category-filter select {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* ProductCategoryFilter 스타일 */
+.product-category-filter {
+  margin-bottom: 20px;
+}
+
+.product-category-filter h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-category-filter select {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* RequestStatusFilter 스타일 */
+.request-status-filter {
+  margin-bottom: 20px;
+}
+
+.request-status-filter h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.request-status-filter button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s ease;
+}
+
+.request-status-filter button:hover {
+  background-color: #ddd;
+}

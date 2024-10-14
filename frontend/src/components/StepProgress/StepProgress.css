@@ -1,0 +1,38 @@
+.step-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .step {
+    display: flex;
+    align-items: center;
+  }
+  
+  .step-number {
+    background-color: #e0e0e0;
+    color: #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .step.active .step-number {
+    background-color: #F9812A;
+  }
+  
+  .step-line {
+    width: 100px;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 0 10px;
+  }
+  
+  .step.active .step-line {
+    background-color: #F9812A;
+  }

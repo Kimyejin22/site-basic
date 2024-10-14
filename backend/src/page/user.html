@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <style>
+        form { margin-bottom: 1em; }
+    </style>
+</head>
+<body>
+    <h1>User Management</h1>
+    <form id="add-user-form">
+        <h2>Add User</h2>
+        <input type="text" id="add-username" placeholder="Username" required>
+        <input type="email" id="add-email" placeholder="Email" required>
+        <input type="password" id="add-password" placeholder="Password" required>
+        <button type="submit">Add</button>
+    </form>
+    <form id="update-user-form">
+        <h2>Update User</h2>
+        <input type="number" id="update-user-id" placeholder="ID" required>
+        <input type="text" id="update-username" placeholder="Username" required>
+        <input type="email" id="update-email" placeholder="Email" required>
+        <input type="password" id="update-password" placeholder="Password" required>
+        <button type="submit">Update</button>
+    </form>
+    <form id="delete-user-form">
+        <h2>Delete User</h2>
+        <input type="number" id="delete-user-id" placeholder="ID" required>
+        <button type="submit">Delete</button>
+    </form>
+    <script>
+            document.getElementById('add-user-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log("Add user form submitted");
+                const username = document.getElementById('add-username').value;
+                const email = document.getElementById('add-email').value;
+                const password = document.getElementById('add-password').value;
+                console.log({ username, email, password });
+
+                try {
+                    const response = await fetch('/api/users', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, email, password })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    console.log("Response from server:", result);
+                } catch (error) {
+                    console.error("Error during fetch:", error);
+                }
+            });
+
+        document.getElementById('update-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('update-user-id').value;
+            const username = document.getElementById('update-username').value;
+            const email = document.getElementById('update-email').value;
+            const password = document.getElementById('update-password').value;
+            await fetch(`/api/users/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
+        });
+
+        document.getElementById('delete-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('delete-user-id').value;
+            await fetch(`/api/users/${id}`, { method: 'DELETE' });
+        });
+    </script>
+</body>
+</html>
